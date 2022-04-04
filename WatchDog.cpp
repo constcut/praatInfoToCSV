@@ -35,7 +35,7 @@ void WatchDog::startTimer()
 
 void WatchDog::explore()
 {
-    _timer.stop();
+    //_timer.stop();
 
     QString filename = "C:\\Users\\constcut\\Desktop\\tests\\1\\info";
     bool exists = QFile::exists(filename);
@@ -62,16 +62,18 @@ void WatchDog::explore()
         if (linesCount == 1)
         {
             QString intensity = prevLine.mid(0, prevLine.indexOf(" dB"));
-            qDebug() << "intensity: " << intensity;
+            //qDebug() << "intensity: " << intensity;
             dumpToFile(intensity);
         }
         else
         {
-            qDebug() << "After explore: ";
+            /*qDebug() << "After explore: ";
             for (int i = 0; i < _starters.size(); ++i)
-                qDebug() << _starters[i] << " " << _storedValues[i] << " " << i;
+                qDebug() << _starters[i] << " " << _storedValues[i] << " " << i;*/
         }
 
+        file.close();
+        QFile::remove(filename);
     }
 }
 
@@ -95,7 +97,7 @@ void WatchDog::dumpToFile(const QString& field)
             QString part = _starters[i].mid(0, _starters[i].size() - 1);
             outStream << part;
             if (i != _starters.size() - 1)
-                outStream << ",";
+                outStream << ", ";
             else
                 outStream << "\n";
         }
@@ -108,7 +110,7 @@ void WatchDog::dumpToFile(const QString& field)
         outStream << _storedValues[i];
 
         if (i != _storedValues.size() - 1)
-            outStream << ",";
+            outStream << ", ";
         else
             outStream << "\n";
     }
