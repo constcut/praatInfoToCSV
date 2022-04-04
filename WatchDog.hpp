@@ -29,6 +29,14 @@ namespace pitc {
             return _starters.size() + 1;
         }
 
+        Q_INVOKABLE void setCSVfilename(QString fn) {
+            _csvFilename = fn;
+        }
+
+        Q_INVOKABLE void setInfoDirectory(QString dir) {
+            _infoDirectory = dir;
+        }
+
     public slots:
 
         void explore();
@@ -61,6 +69,9 @@ namespace pitc {
         QString _name;
         QString _date;
         QString _dayTime;
+
+        QString _csvFilename;
+        QString _infoDirectory;
     };
 
 

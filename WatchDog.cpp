@@ -37,7 +37,7 @@ void WatchDog::explore()
 {
     //_timer.stop();
 
-    QString filename = "C:\\Users\\constcut\\Desktop\\tests\\1\\info";
+    QString filename = _infoDirectory + "/info"; //"C:\\Users\\constcut\\Desktop\\tests\\1\\info";
     bool exists = QFile::exists(filename);
 
     if (exists)
@@ -86,7 +86,7 @@ void WatchDog::sendToQML()
 
 void WatchDog::dumpToFile(const QString& field)
 {
-    QString filename = "C:\\Users\\constcut\\Desktop\\tests\\out.csv";
+    QString filename = _csvFilename; //"C:\\Users\\constcut\\Desktop\\tests\\out.csv";
 
     bool existed = QFile::exists(filename);
 

@@ -28,6 +28,8 @@ Window
             var filename = saveFileDialog.fileUrls[0].substring(8)
             outputFileText.text = filename
             saveFileDialog.visible = false
+
+            watchDog.setCSVfilename(filename)
         }
         onRejected: {
             saveFileDialog.visible = false
@@ -49,6 +51,8 @@ Window
             var dirName = directoryDialog.fileUrls[0].substring(8)
             infoDirText.text = dirName
             directoryDialog.visible = false
+
+            watchDog.setInfoDirectory(dirName)
         }
         onRejected: {
             directoryDialog.visible = false
