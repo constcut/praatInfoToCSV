@@ -15,17 +15,16 @@ namespace pitc {
         Q_OBJECT
 
     public:
+
         WatchDog();
 
         void startTimer();
-
-        //load configuration
 
         Q_INVOKABLE void setName(QString name);
         Q_INVOKABLE void setDate(QString date);
         Q_INVOKABLE void setDayTime(QString dayTime);
 
-        Q_INVOKABLE int totalFields() {
+        Q_INVOKABLE int totalFields() const {
             return _starters.size() + 1;
         }
 
@@ -52,11 +51,12 @@ namespace pitc {
 
         void resetStored();
 
-        void dumpToFile(const QString& field);
-
+        void dumpToFile(const QString& field) const;
         void sendToQML();
 
         QTimer _timer;
+
+        const int _timerInterval = 500;
 
         QStringList _starters;
         QStringList _enders;

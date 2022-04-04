@@ -9,7 +9,7 @@ using namespace pitc;
 
 WatchDog::WatchDog()
 {
-    _timer.setInterval(1000);
+    _timer.setInterval(_timerInterval);
     connect(&_timer, &QTimer::timeout, this, &WatchDog::explore);
 
     _starters << "duration:" << "Median pitch:" << "Mean pitch:" << "Number of pulses:"
@@ -35,9 +35,7 @@ void WatchDog::startTimer()
 
 void WatchDog::explore()
 {
-    //_timer.stop();
-
-    QString filename = _infoDirectory + "/info"; //"C:\\Users\\constcut\\Desktop\\tests\\1\\info";
+    QString filename = _infoDirectory + "/info";
     bool exists = QFile::exists(filename);
 
     if (exists)
@@ -84,9 +82,9 @@ void WatchDog::sendToQML()
 
 
 
-void WatchDog::dumpToFile(const QString& field)
+void WatchDog::dumpToFile(const QString& field) const
 {
-    QString filename = _csvFilename; //"C:\\Users\\constcut\\Desktop\\tests\\out.csv";
+    QString filename = _csvFilename;
 
     bool existed = QFile::exists(filename);
 
