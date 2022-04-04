@@ -14,6 +14,10 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+    app.setApplicationName("PraatInfoToCSV");
+    app.setOrganizationName("a");
+    app.setOrganizationDomain("a.a");
+
     auto font = app.font();
     font.setPixelSize(14);
     app.setFont(font);

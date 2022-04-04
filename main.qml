@@ -13,6 +13,27 @@ Window
     visible: true
     title: qsTr("Praat info to CSV")
 
+
+
+    FileDialog {
+        id: saveFileDialog
+        title: "Save csv to file"
+        folder: shortcuts.home
+        selectExisting: false
+        selectMultiple: false
+
+        onAccepted: {
+            var filename = saveFileDialog.fileUrls[0].substring(7)
+            outputFileText.text = filename
+            saveFileDialog.visible = false
+        }
+        onRejected: {
+            saveFileDialog.visible = false
+        }
+        nameFilters: [ "CSV (*.csv)" ]
+    }
+
+
     ColumnLayout
     {
         y: 50
@@ -44,6 +65,7 @@ Window
             }
             RoundButton {
                 text: ".."
+                onClicked: saveFileDialog.open()
             }
         }
 
