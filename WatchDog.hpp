@@ -2,8 +2,9 @@
 #define WATCHDOG_HPP
 
 #include <QObject>
-
 #include <QTimer>
+
+#include <vector>
 
 
 namespace pitc {
@@ -30,11 +31,18 @@ namespace pitc {
 
         void checkLine(const QString& line);
 
+        void resetStored();
+
+
         QTimer _timer;
 
         QStringList _starters;
         QStringList _enders;
         QStringList _csvNames;
+
+        QString _singleFieldCut = " dB";
+
+        std::vector<QString> _storedValues;
     };
 
 

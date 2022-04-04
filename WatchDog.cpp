@@ -16,7 +16,14 @@ WatchDog::WatchDog()
               << "Fraction of locally unvoiced frames:" << "Jitter (local):" << "Shimmer (local):";
 
     _enders << "seconds" << "Hz" << "Hz" << ""
-            << "%" << "%" << "%";
+            << "%" << "%" << "%"; //Другой вариант до следующего пробела, если его нет - до конца
+
+    resetStored();
+}
+
+
+void WatchDog::resetStored() {
+    _storedValues = std::vector<QString>(_starters.size());
 }
 
 
@@ -39,20 +46,33 @@ void WatchDog::explore()
         file.open(QFile::ReadOnly | QFile::Text);
         QTextStream textStream(&file);
 
-        QString line;
-        int lineCount = 0;
+        QString line, prevLine;
+        int linesCount = 0;
 
         while (textStream.readLineInto(&line))
         {
-            ++lineCount;
+            ++linesCount;
+            prevLine = line;
             checkLine(line);
-            //Search for lines
         }
 
-        qDebug() << "Total lines count: " << lineCount;
+        //qDebug() << "Total lines count: " << linesCount;
+        //qDebug() << "Last line: " << prevLine;
+
+        if (linesCount == 1)
+        {
+            QString intesivity = prevLine.mid(0, prevLine.indexOf(" dB"));
+            qDebug() << "Intensivity: " << intesivity;
+        }
+        else
+        {
+            qDebug() << "After explore: ";
+            for (int i = 0; i < _starters.size(); ++i)
+                qDebug() << _starters[i] << " " << _storedValues[i] << " " << i;
+        }
+
     }
 }
-
 
 
 
@@ -63,24 +83,27 @@ void WatchDog::checkLine(const QString &line)
         const auto& start = _starters[i];
         const auto& end = _enders[i];
 
-        int index = line.indexOf(start);
-        if (index != -1)
+        int startIndex = line.indexOf(start);
+        if (startIndex != -1)
         {
-            const int posAfterStarter = index + start.size();
+            const int posAfterStarter = startIndex + start.size();
 
             QString found;
             if (end.isEmpty() == false)
             {
-                int separator = line.indexOf(end);
+                int separator = line.indexOf(end, startIndex);
                 int len = separator - posAfterStarter;
                 found = line.mid(posAfterStarter, len);
-
             }
             else
                 found = line.mid(posAfterStarter);
 
+            found = found.trimmed();
+
+            _storedValues[i] = found;
+
             //Если % нужен вконце можем добавлять его тут
-            qDebug() << i << " found " << found;
+            qDebug() << i << " found " << found << " for " << start;
             return;
         }
     }
