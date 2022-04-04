@@ -73,6 +73,20 @@ Window
             notifyRepeater.showAll()
             notifyRepeater.cloneAll()
             notifyRepeater.hideAll()
+
+            if (dayTimeCombo.currentIndex == 0)
+            {
+                dayTimeCombo.currentIndex = 1
+            }
+            else {
+                dayTimeCombo.currentIndex = 0
+                var theDay = calendar.selectedDate
+                theDay.setDate(theDay.getDate() + 1);
+                calendar.selectedDate = theDay
+            }
+
+            watchDog.setDate(dateText.text)
+            watchDog.setDayTime(dayTimeCombo.currentText)
         }
     }
 
