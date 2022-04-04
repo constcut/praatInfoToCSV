@@ -31,10 +31,39 @@ Window {
             }
             RoundButton {
                 text: ".."
+                onClicked: {
+                    calendarDialog.open()
+                }
             }
 
         }
 
     }
+
+
+    Dialog
+    {
+        id: calendarDialog
+
+        width: 400
+        height: 400
+
+        Quick1.Calendar
+        {
+            anchors.fill: parent
+            id: calendar
+
+            onSelectedDateChanged: {
+                dateText.text = selectedDate
+                dateText.text = dateText.text.substring(0, 10)
+            }
+
+            Component.onCompleted: {
+                dateText.text = selectedDate
+                dateText.text = dateText.text.substring(0, 10)
+            }
+        }
+    }
+
 
 }
