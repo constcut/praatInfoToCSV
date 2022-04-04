@@ -19,7 +19,7 @@ Window
     {
         id: saveFileDialog
         title: "Save csv to file"
-        folder: shortcuts.home
+        folder: shortcuts.desktop
 
         selectExisting: false
         selectMultiple: false
@@ -39,7 +39,7 @@ Window
     {
         id: directoryDialog
         title: "Please choose praat info directory"
-        folder: shortcuts.home
+        folder: shortcuts.desktop
 
         selectExisting: true
         selectMultiple: false
