@@ -61,8 +61,9 @@ void WatchDog::explore()
 
         if (linesCount == 1)
         {
-            QString intesivity = prevLine.mid(0, prevLine.indexOf(" dB"));
-            qDebug() << "Intensivity: " << intesivity;
+            QString intensity = prevLine.mid(0, prevLine.indexOf(" dB"));
+            qDebug() << "intensity: " << intensity;
+            dumpToFile(intensity);
         }
         else
         {
@@ -74,6 +75,47 @@ void WatchDog::explore()
     }
 }
 
+
+void WatchDog::dumpToFile(const QString& field)
+{
+    QString filename = "C:\\Users\\constcut\\Desktop\\tests\\out.csv";
+
+    bool existed = QFile::exists(filename);
+
+    QFile file(filename);
+    file.open(QFile::Append | QFile::Text);
+
+    QTextStream outStream(&file);
+
+    if (existed == false)
+    {
+        outStream << "Intensity,";
+        for (int i = 0; i < _starters.size(); ++i)
+        {
+            QString part = _starters[i].mid(0, _starters[i].size() - 1);
+            outStream << part;
+            if (i != _starters.size() - 1)
+                outStream << ",";
+            else
+                outStream << "\n";
+        }
+    }
+
+    outStream << field << ",";
+
+    for (size_t i = 0; i < _storedValues.size(); ++i)
+    {
+        outStream << _storedValues[i];
+
+        if (i != _storedValues.size() - 1)
+            outStream << ",";
+        else
+            outStream << "\n";
+    }
+
+    //Write file
+    qDebug() << "File dumped";
+}
 
 
 void WatchDog::checkLine(const QString &line)

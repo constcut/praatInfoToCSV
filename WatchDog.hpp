@@ -33,6 +33,7 @@ namespace pitc {
 
         void resetStored();
 
+        void dumpToFile(const QString& field);
 
         QTimer _timer;
 
