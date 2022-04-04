@@ -6,9 +6,8 @@ import QtQuick.Dialogs 1.1
 import QtQuick.Controls 1.4 as Quick1
 
 
-Window {
-
-
+Window
+{
     width: 1024
     height: 480
     visible: true
@@ -79,6 +78,20 @@ Window {
                 placeholderText: "Name"
             }
 
+            RoundButton {
+                text: "Hide"
+                onClicked:  {
+                    notifyRepeater.hideAll()
+                }
+            }
+
+            RoundButton {
+                text: "Show"
+                onClicked:  {
+                    notifyRepeater.showAll()
+                }
+            }
+
         }
 
         RowLayout
@@ -94,6 +107,61 @@ Window {
                     id: localField
                     placeholderText: index
                     implicitWidth: 100
+                }
+            }
+        }
+
+
+        RowLayout
+        {
+            spacing:  10
+
+
+
+            Repeater
+            {
+                id: notifyRepeater
+                model : 5
+
+                function showAll()
+                {
+                    for (var i = 0; i < model; ++i)
+                        notifyRepeater.itemAt(i).showField()
+                }
+
+                function cloneAll() {
+
+                }
+
+                function hideAll()
+                {
+                    for (var i = 0; i < model; ++i)
+                        notifyRepeater.itemAt(i).startAnimation()
+                }
+
+                TextField
+                {
+                    id: notifyField
+                    placeholderText: index
+                    implicitWidth: 100
+
+                    function startAnimation() {
+                        opacityAnimation.start()
+                    }
+
+                    function showField() {
+                        notifyField.opacity = 1.0
+                    }
+
+                    NumberAnimation
+                    {
+                        id: opacityAnimation
+                        target: notifyField
+                        property: "opacity"
+                        duration: 1500
+                        from: 1.0
+                        to: 0.0
+                    }
                 }
             }
         }
