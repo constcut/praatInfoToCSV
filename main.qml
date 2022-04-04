@@ -22,6 +22,34 @@ Window {
 
         RowLayout
         {
+            spacing: 10
+            Text {
+                text: "Audio directory: "
+            }
+            Text {
+                id: audioDirText
+            }
+            RoundButton {
+                text: ".."
+            }
+        }
+
+        RowLayout
+        {
+            spacing: 10
+            Text {
+                text: "Output file: "
+            }
+            Text {
+                id: outputFileText
+            }
+            RoundButton {
+                text: ".."
+            }
+        }
+
+        RowLayout
+        {
             spacing: 20
 
             Text {
@@ -50,6 +78,7 @@ Window {
                 id: nameField
                 placeholderText: "Name"
             }
+
         }
 
         RowLayout
