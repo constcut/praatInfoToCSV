@@ -99,7 +99,7 @@ void WatchDog::dumpToFile(const QString& field)
 
     if (existed == false)
     {
-        outStream << "Intensity,";
+        outStream << "Name, Date, DayTime, Intensity, ";
         for (int i = 0; i < _starters.size(); ++i)
         {
             QString part = _starters[i].mid(0, _starters[i].size() - 1);
@@ -111,7 +111,8 @@ void WatchDog::dumpToFile(const QString& field)
         }
     }
 
-    outStream << field << ",";
+    outStream << _name << ", " << _date << ", "
+              << _dayTime << ", " << field << ", ";
 
     for (size_t i = 0; i < _storedValues.size(); ++i)
     {
