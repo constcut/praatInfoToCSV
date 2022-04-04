@@ -15,15 +15,17 @@ Window
 
 
 
-    FileDialog {
+    FileDialog
+    {
         id: saveFileDialog
         title: "Save csv to file"
         folder: shortcuts.home
+
         selectExisting: false
         selectMultiple: false
 
         onAccepted: {
-            var filename = saveFileDialog.fileUrls[0].substring(7)
+            var filename = saveFileDialog.fileUrls[0].substring(8)
             outputFileText.text = filename
             saveFileDialog.visible = false
         }
@@ -31,6 +33,26 @@ Window
             saveFileDialog.visible = false
         }
         nameFilters: [ "CSV (*.csv)" ]
+    }
+
+    FileDialog
+    {
+        id: directoryDialog
+        title: "Please choose praat info directory"
+        folder: shortcuts.home
+
+        selectExisting: true
+        selectMultiple: false
+        selectFolder: true
+
+        onAccepted: {
+            var dirName = directoryDialog.fileUrls[0].substring(8)
+            infoDirText.text = dirName
+            directoryDialog.visible = false
+        }
+        onRejected: {
+            directoryDialog.visible = false
+        }
     }
 
 
@@ -44,13 +66,14 @@ Window
         {
             spacing: 10
             Text {
-                text: "Audio directory: "
+                text: "Info directory: "
             }
             Text {
-                id: audioDirText
+                id: infoDirText
             }
             RoundButton {
                 text: ".."
+                onClicked: directoryDialog.open()
             }
         }
 
