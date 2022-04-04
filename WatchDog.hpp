@@ -28,7 +28,13 @@ namespace pitc {
 
     private:
 
+        void checkLine(const QString& line);
+
         QTimer _timer;
+
+        QStringList _starters;
+        QStringList _enders;
+        QStringList _csvNames;
     };
 
 
