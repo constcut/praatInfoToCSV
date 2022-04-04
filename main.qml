@@ -18,10 +18,11 @@ Window {
     {
         y: 50
         x: 50
-        spacing: 10
+        spacing: 30
 
         RowLayout
         {
+            spacing: 20
 
             Text {
                 text: "Date: "
@@ -35,7 +36,20 @@ Window {
                     calendarDialog.open()
                 }
             }
-
+            Text {
+                text: "Time:"
+            }
+            ComboBox {
+                id: timeCombo
+                model: ["Утро", "Вечер"]
+            }
+            Text {
+                text: "Name: "
+            }
+            TextField {
+                id: nameField
+                placeholderText: "Name"
+            }
         }
 
     }
