@@ -1,6 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include <QFont>
+#include <QTextCodec>
+
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +13,11 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
+
+    auto font = app.font();
+    font.setPixelSize(14);
+    app.setFont(font);
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 
     QQmlApplicationEngine engine;
 
