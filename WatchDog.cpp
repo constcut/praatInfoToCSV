@@ -79,8 +79,6 @@ void WatchDog::sendToQML()
     for (const auto& s: _storedValues)
         valuesToSend << s;
 
-    qDebug() << "Expect notification";
-
     emit notifyFilled(valuesToSend);
 }
 
@@ -124,8 +122,6 @@ void WatchDog::dumpToFile(const QString& field)
             outStream << "\n";
     }
 
-    //Write file
-    qDebug() << "File dumped";
 }
 
 
@@ -152,11 +148,7 @@ void WatchDog::checkLine(const QString &line)
                 found = line.mid(posAfterStarter);
 
             found = found.trimmed();
-
             _storedValues[i] = found;
-
-            //Если % нужен вконце можем добавлять его тут
-            qDebug() << i << " found " << found << " for " << start;
             return;
         }
     }
