@@ -2,7 +2,7 @@
 #define WATCHDOG_HPP
 
 #include <QObject>
-#include <QFile>
+
 #include <QTimer>
 
 
@@ -14,9 +14,21 @@ namespace pitc {
         Q_OBJECT
 
     public:
-        WatchDog() = default;
+        WatchDog();
 
+        void startTimer();
 
+        //load configuration
+
+    public slots:
+
+        void explore();
+
+    signals:
+
+    private:
+
+        QTimer _timer;
     };
 
 

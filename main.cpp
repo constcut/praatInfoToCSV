@@ -31,6 +31,8 @@ int main(int argc, char *argv[])
     pitc::WatchDog watchDog;
     engine.rootContext()->setContextProperty("watchDog", &watchDog);
 
+    watchDog.startTimer();
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
