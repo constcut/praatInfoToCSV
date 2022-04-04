@@ -56,6 +56,20 @@ Window
     }
 
 
+    Connections {
+
+        id: connector
+        target: watchDog
+
+        function notifyFilled(list)
+        {
+            for (var i = 0; i < list.length; ++i)
+            {
+                fieldsRepeater.itemAt(i).text = list[i]
+            }
+        }
+    }
+
     ColumnLayout
     {
         y: 50

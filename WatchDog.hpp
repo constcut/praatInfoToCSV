@@ -27,6 +27,8 @@ namespace pitc {
 
     signals:
 
+        void notifyFilled(QStringList list);
+
     private:
 
         void checkLine(const QString& line);
@@ -34,6 +36,8 @@ namespace pitc {
         void resetStored();
 
         void dumpToFile(const QString& field);
+
+        void sendToQML();
 
         QTimer _timer;
 

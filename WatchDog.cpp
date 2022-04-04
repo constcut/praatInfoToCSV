@@ -56,26 +56,31 @@ void WatchDog::explore()
             checkLine(line);
         }
 
-        //qDebug() << "Total lines count: " << linesCount;
-        //qDebug() << "Last line: " << prevLine;
-
         if (linesCount == 1)
         {
             QString intensity = prevLine.mid(0, prevLine.indexOf(" dB"));
-            //qDebug() << "intensity: " << intensity;
             dumpToFile(intensity);
+            //Another notification
         }
-        else
-        {
-            /*qDebug() << "After explore: ";
-            for (int i = 0; i < _starters.size(); ++i)
-                qDebug() << _starters[i] << " " << _storedValues[i] << " " << i;*/
+        else {
+            sendToQML();
         }
 
         file.close();
         QFile::remove(filename);
     }
 }
+
+
+void WatchDog::sendToQML()
+{
+    QStringList valuesToSend;
+    for (const auto& s: _storedValues)
+        valuesToSend << s;
+
+    emit notifyFilled(valuesToSend);
+}
+
 
 
 void WatchDog::dumpToFile(const QString& field)
