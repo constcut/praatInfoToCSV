@@ -1,8 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include <QFont>
 #include <QTextCodec>
+
+#include "WatchDog.hpp"
 
 
 int main(int argc, char *argv[])
@@ -25,7 +28,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    //engine.rootContext()->setContextProperty("watchDog", &watchDog);
+    pitc::WatchDog watchDog;
+    engine.rootContext()->setContextProperty("watchDog", &watchDog);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
