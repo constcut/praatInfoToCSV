@@ -60,7 +60,8 @@ void WatchDog::explore()
         {
             QString intensity = prevLine.mid(0, prevLine.indexOf(" dB"));
             dumpToFile(intensity);
-            //Another notification
+
+            emit notifyLastFilled(intensity);
         }
         else {
             sendToQML();

@@ -21,6 +21,10 @@ namespace pitc {
 
         //load configuration
 
+        Q_INVOKABLE int totalFields() {
+            return _starters.size() + 1;
+        }
+
     public slots:
 
         void explore();
@@ -28,6 +32,7 @@ namespace pitc {
     signals:
 
         void notifyFilled(QStringList list);
+        void notifyLastFilled(QString last);
 
     private:
 

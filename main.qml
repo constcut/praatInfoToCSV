@@ -63,12 +63,23 @@ Window
 
         function onNotifyFilled(list)
         {
-            console.log("NOTIFICATION", list)
             for (var i = 0; i < list.length; ++i)
-            {
-                fieldsRepeater.itemAt(i).text = list[i]
-            }
+                fieldsRepeater.itemAt(i + 1).text = list[i]
         }
+
+        function onNotifyLastFilled(last)
+        {
+            fieldsRepeater.itemAt(0).text = last
+            notifyRepeater.showAll()
+            notifyRepeater.cloneAll()
+            notifyRepeater.hideAll()
+        }
+    }
+
+    Component.onCompleted: {
+        notifyRepeater.model = watchDog.totalFields()
+        fieldsRepeater.model = watchDog.totalFields()
+        notifyRepeater.hideAll()
     }
 
     ColumnLayout
@@ -192,8 +203,10 @@ Window
 
                 function cloneAll() {
                     for (var i = 0; i < model; ++i)
-                        notifyRepeater.itemAt(i).text
-                            = fieldsRepeater.itemAt(i).text
+                    {
+                        notifyRepeater.itemAt(i).text = fieldsRepeater.itemAt(i).text
+                        fieldsRepeater.itemAt(i).text = ""
+                    }
                 }
 
                 function hideAll()
@@ -221,7 +234,7 @@ Window
                         id: opacityAnimation
                         target: notifyField
                         property: "opacity"
-                        duration: 1500
+                        duration: 3500
                         from: 1.0
                         to: 0.0
                     }
