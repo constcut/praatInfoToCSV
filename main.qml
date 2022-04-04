@@ -138,7 +138,7 @@ Window
                 text: "Time:"
             }
             ComboBox {
-                id: timeCombo
+                id: dayTimeCombo
                 model: ["Утро", "Вечер"]
             }
             Text {
@@ -150,17 +150,11 @@ Window
             }
 
             RoundButton {
-                text: "Hide"
-                onClicked:  {
-                    notifyRepeater.hideAll()
-                }
-            }
-
-            RoundButton {
-                text: "Show"
-                onClicked:  {
-                    notifyRepeater.cloneAll()
-                    notifyRepeater.showAll()
+                text: "Set"
+                onClicked: {
+                    watchDog.setDate(dateText.text)
+                    watchDog.setName(nameField.text)
+                    watchDog.setDayTime(dayTimeCombo.currentText)
                 }
             }
 

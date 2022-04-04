@@ -160,3 +160,19 @@ void WatchDog::checkLine(const QString &line)
         }
     }
 }
+
+
+void WatchDog::setName(QString name)
+{
+    _name = name;
+}
+
+void WatchDog::setDate(QString date)
+{
+    _date = date;
+}
+
+void WatchDog::setDayTime(QString dayTime)
+{
+    _dayTime = dayTime;
+}

@@ -21,6 +21,10 @@ namespace pitc {
 
         //load configuration
 
+        Q_INVOKABLE void setName(QString name);
+        Q_INVOKABLE void setDate(QString date);
+        Q_INVOKABLE void setDayTime(QString dayTime);
+
         Q_INVOKABLE int totalFields() {
             return _starters.size() + 1;
         }
@@ -53,6 +57,10 @@ namespace pitc {
         QString _singleFieldCut = " dB";
 
         std::vector<QString> _storedValues;
+
+        QString _name;
+        QString _date;
+        QString _dayTime;
     };
 
 
