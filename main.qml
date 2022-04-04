@@ -88,6 +88,7 @@ Window
             RoundButton {
                 text: "Show"
                 onClicked:  {
+                    notifyRepeater.cloneAll()
                     notifyRepeater.showAll()
                 }
             }
@@ -130,7 +131,9 @@ Window
                 }
 
                 function cloneAll() {
-
+                    for (var i = 0; i < model; ++i)
+                        notifyRepeater.itemAt(i).text
+                            = fieldsRepeater.itemAt(i).text
                 }
 
                 function hideAll()
