@@ -78,6 +78,8 @@ void WatchDog::sendToQML()
     for (const auto& s: _storedValues)
         valuesToSend << s;
 
+    qDebug() << "Expect notification";
+
     emit notifyFilled(valuesToSend);
 }
 

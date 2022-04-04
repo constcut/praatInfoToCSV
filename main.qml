@@ -61,8 +61,9 @@ Window
         id: connector
         target: watchDog
 
-        function notifyFilled(list)
+        function onNotifyFilled(list)
         {
+            console.log("NOTIFICATION", list)
             for (var i = 0; i < list.length; ++i)
             {
                 fieldsRepeater.itemAt(i).text = list[i]
@@ -161,7 +162,7 @@ Window
             Repeater
             {
                 id: fieldsRepeater
-                model : 5
+                model : 7
 
                 TextField {
                     id: localField
@@ -181,7 +182,7 @@ Window
             Repeater
             {
                 id: notifyRepeater
-                model : 5
+                model : 7
 
                 function showAll()
                 {
