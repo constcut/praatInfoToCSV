@@ -52,6 +52,23 @@ Window {
             }
         }
 
+        RowLayout
+        {
+            spacing:  10
+
+            Repeater
+            {
+                id: fieldsRepeater
+                model : 5
+
+                TextField {
+                    id: localField
+                    placeholderText: index
+                    implicitWidth: 100
+                }
+            }
+        }
+
     }
 
 
