@@ -105,8 +105,21 @@ void WatchDog::dumpToFile(const QString& field) const
 
     if (existed == false)
     {
-        outStream << "Name, Date, DayTime, Intensity, ";
-        for (int i = 0; i < _starters.size(); ++i)
+        outStream << "Name, Date, DayTime, ";
+
+        for (int i = 0; i <= 2; ++i)
+        {
+            QString part = _starters[i].mid(0, _starters[i].size() - 1);
+            outStream << part;
+            if (i != _starters.size() - 1)
+                outStream << ", ";
+            else
+                outStream << "\n";
+        }
+
+        outStream << "Intensity, ";
+
+        for (int i = 3; i <= _starters.size(); ++i)
         {
             QString part = _starters[i].mid(0, _starters[i].size() - 1);
             outStream << part;
@@ -118,9 +131,21 @@ void WatchDog::dumpToFile(const QString& field) const
     }
 
     outStream << _name << ", " << _date << ", "
-              << _dayTime << ", " << field << ", ";
+              << _dayTime << ", ";
 
-    for (size_t i = 0; i < _storedValues.size(); ++i)
+    for (size_t i = 0; i <= 2; ++i)
+    {
+        outStream << _storedValues[i];
+
+        if (i != _storedValues.size() - 1)
+            outStream << ", ";
+        else
+            outStream << "\n";
+    }
+
+    outStream << field << ", ";
+
+    for (size_t i = 3; i < _storedValues.size(); ++i)
     {
         outStream << _storedValues[i];
 
