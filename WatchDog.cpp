@@ -115,9 +115,9 @@ void WatchDog::dumpToFile(const QString& field) const
     outStream << _name << ", " << _date << ", "
               << _dayTime << ", ";
 
-    fillHeader(0, _breakFieldBorder, outStream);
+    fillValues(0, _breakFieldBorder, outStream);
     outStream << field << ", ";
-    fillHeader(_breakFieldBorder, _storedValues.size(), outStream);
+    fillValues(_breakFieldBorder, _storedValues.size(), outStream);
 }
 
 
