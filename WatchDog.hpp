@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QTextStream>
 
 #include <vector>
 
@@ -52,13 +53,15 @@ namespace pitc {
     private:
 
         void checkFile(const QString& filename);
-
         void checkLine(const QString& line);
 
         void resetStored();
 
         void dumpToFile(const QString& field) const;
         void sendToQML();
+
+        void fillHeader(int from, int to, QTextStream &outStream) const;
+        void fillValues(size_t from, size_t to, QTextStream &outStream) const;
 
         QTimer _timer;
 

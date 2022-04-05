@@ -106,46 +106,38 @@ void WatchDog::dumpToFile(const QString& field) const
     if (existed == false)
     {
         outStream << "Name, Date, DayTime, ";
-
-        for (int i = 0; i < _breakFieldBorder; ++i)
-        {
-            QString part = _starters[i].mid(0, _starters[i].size() - 1);
-            outStream << part;
-            if (i != _starters.size() - 1)
-                outStream << ", ";
-            else
-                outStream << "\n";
-        }
+        fillHeader(0, _breakFieldBorder, outStream);
 
         outStream << "Intensity, ";
-
-        for (int i = _breakFieldBorder; i < _starters.size(); ++i)
-        {
-            QString part = _starters[i].mid(0, _starters[i].size() - 1);
-            outStream << part;
-            if (i != _starters.size() - 1)
-                outStream << ", ";
-            else
-                outStream << "\n";
-        }
+        fillHeader(_breakFieldBorder, _starters.size(), outStream);
     }
 
     outStream << _name << ", " << _date << ", "
               << _dayTime << ", ";
 
-    for (size_t i = 0; i <= static_cast<size_t>(_breakFieldBorder); ++i)
-    {
-        outStream << _storedValues[i];
-
-        if (i != _storedValues.size() - 1)
-            outStream << ", ";
-        else
-            outStream << "\n";
-    }
-
+    fillHeader(0, _breakFieldBorder, outStream);
     outStream << field << ", ";
+    fillHeader(_breakFieldBorder, _storedValues.size(), outStream);
+}
 
-    for (size_t i = _breakFieldBorder; i < _storedValues.size(); ++i)
+
+void WatchDog::fillHeader(int from, int to, QTextStream& outStream) const
+{
+    for (int i = from; i < to; ++i)
+    {
+        QString part = _starters[i].mid(0, _starters[i].size() - 1);
+        outStream << part;
+        if (i != _starters.size() - 1)
+            outStream << ", ";
+        else
+            outStream << "\n";
+    }
+}
+
+
+void WatchDog::fillValues(size_t from, size_t to, QTextStream &outStream) const
+{
+    for (size_t i = from; i < to; ++i)
     {
         outStream << _storedValues[i];
 
@@ -154,7 +146,6 @@ void WatchDog::dumpToFile(const QString& field) const
         else
             outStream << "\n";
     }
-
 }
 
 
