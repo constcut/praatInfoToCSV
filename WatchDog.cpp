@@ -119,7 +119,7 @@ void WatchDog::dumpToFile(const QString& field) const
 
         outStream << "Intensity, ";
 
-        for (int i = 3; i <= _starters.size(); ++i)
+        for (int i = 3; i < _starters.size(); ++i)
         {
             QString part = _starters[i].mid(0, _starters[i].size() - 1);
             outStream << part;
