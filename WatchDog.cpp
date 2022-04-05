@@ -36,6 +36,14 @@ void WatchDog::startTimer()
 void WatchDog::explore()
 {
     QString filename = _infoDirectory + "/info";
+    QString filenameTxt = _infoDirectory + "/info.txt";
+    checkFile(filename);
+    checkFile(filenameTxt);
+}
+
+
+void WatchDog::checkFile(const QString& filename)
+{
     bool exists = QFile::exists(filename);
 
     if (exists)
@@ -69,6 +77,7 @@ void WatchDog::explore()
         QFile::remove(filename);
     }
 }
+
 
 
 void WatchDog::sendToQML()

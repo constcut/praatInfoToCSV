@@ -47,6 +47,8 @@ namespace pitc {
 
     private:
 
+        void checkFile(const QString& filename);
+
         void checkLine(const QString& line);
 
         void resetStored();
