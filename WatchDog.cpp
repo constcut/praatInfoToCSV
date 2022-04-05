@@ -17,7 +17,7 @@ WatchDog::WatchDog()
               << "Mean harmonics-to-noise ratio:";
 
     _enders << "seconds" << "Hz" << "Hz" << ""
-            << "%" << "%" << "%" << ""; //Другой вариант до следующего пробела, если его нет - до конца
+            << "%" << "%" << "%" << "dB"; //Другой вариант до следующего пробела, если его нет - до конца
 
     resetStored();
 }
@@ -63,7 +63,7 @@ void WatchDog::checkFile(const QString& filename)
             checkLine(line);
         }
 
-        if (linesCount == 1)
+        if (linesCount <= 2)
         {
             QString intensity = prevLine.mid(0, prevLine.indexOf(" dB"));
             dumpToFile(intensity);
