@@ -12,11 +12,12 @@ WatchDog::WatchDog()
     _timer.setInterval(_timerInterval);
     connect(&_timer, &QTimer::timeout, this, &WatchDog::explore);
 
-    _starters << "duration:" << "Median pitch:" << "Mean pitch:" << "Number of pulses:"
-              << "Fraction of locally unvoiced frames:" << "Jitter (local):" << "Shimmer (local):";
+    _starters << "duration:" << "Mean pitch:" << "Median pitch:" << "Number of pulses:"
+              << "Fraction of locally unvoiced frames:" << "Jitter (local):" << "Shimmer (local):"
+              << "Mean harmonics-to-noise ratio:";
 
     _enders << "seconds" << "Hz" << "Hz" << ""
-            << "%" << "%" << "%"; //Другой вариант до следующего пробела, если его нет - до конца
+            << "%" << "%" << "%" << ""; //Другой вариант до следующего пробела, если его нет - до конца
 
     resetStored();
 }
