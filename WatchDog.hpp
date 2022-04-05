@@ -68,9 +68,9 @@ namespace pitc {
 
         std::vector<QString> _storedValues;
 
-        QString _name;
-        QString _date;
-        QString _dayTime;
+        QString _name = "Not set";
+        QString _date = "Not set";
+        QString _dayTime = "Not set";
 
         QString _csvFilename;
         QString _infoDirectory;
