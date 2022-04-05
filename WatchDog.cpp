@@ -107,7 +107,7 @@ void WatchDog::dumpToFile(const QString& field) const
     {
         outStream << "Name, Date, DayTime, ";
 
-        for (int i = 0; i <= 2; ++i)
+        for (int i = 0; i < _breakFieldBorder; ++i)
         {
             QString part = _starters[i].mid(0, _starters[i].size() - 1);
             outStream << part;
@@ -119,7 +119,7 @@ void WatchDog::dumpToFile(const QString& field) const
 
         outStream << "Intensity, ";
 
-        for (int i = 3; i < _starters.size(); ++i)
+        for (int i = _breakFieldBorder; i < _starters.size(); ++i)
         {
             QString part = _starters[i].mid(0, _starters[i].size() - 1);
             outStream << part;
@@ -133,7 +133,7 @@ void WatchDog::dumpToFile(const QString& field) const
     outStream << _name << ", " << _date << ", "
               << _dayTime << ", ";
 
-    for (size_t i = 0; i <= 2; ++i)
+    for (size_t i = 0; i <= static_cast<size_t>(_breakFieldBorder); ++i)
     {
         outStream << _storedValues[i];
 
@@ -145,7 +145,7 @@ void WatchDog::dumpToFile(const QString& field) const
 
     outStream << field << ", ";
 
-    for (size_t i = 3; i < _storedValues.size(); ++i)
+    for (size_t i = _breakFieldBorder; i < _storedValues.size(); ++i)
     {
         outStream << _storedValues[i];
 

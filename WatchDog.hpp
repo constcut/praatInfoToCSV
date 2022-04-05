@@ -36,6 +36,10 @@ namespace pitc {
             _infoDirectory = dir;
         }
 
+        Q_INVOKABLE int getBreakBorder() {
+            return _breakFieldBorder;
+        }
+
     public slots:
 
         void explore();
@@ -59,6 +63,8 @@ namespace pitc {
         QTimer _timer;
 
         const int _timerInterval = 500;
+
+        const int _breakFieldBorder = 3;
 
         QStringList _starters;
         QStringList _enders;

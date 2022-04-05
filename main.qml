@@ -67,13 +67,21 @@ Window
 
         function onNotifyFilled(list)
         {
-            for (var i = 0; i < list.length; ++i)
+            var breakBorder = watchDog.getBreakBorder()
+            var i = 0
+
+            for (i = 0; i < breakBorder; ++i)
+                fieldsRepeater.itemAt(i).text = list[i]
+
+            for (i = breakBorder; i < list.length; ++i)
                 fieldsRepeater.itemAt(i + 1).text = list[i]
         }
 
         function onNotifyLastFilled(last)
         {
-            fieldsRepeater.itemAt(0).text = last
+            var breakBorder = watchDog.getBreakBorder()
+
+            fieldsRepeater.itemAt(breakBorder).text = last
             notifyRepeater.showAll()
             notifyRepeater.cloneAll()
             notifyRepeater.hideAll()
@@ -103,7 +111,7 @@ Window
     ColumnLayout
     {
         y: 50
-        x: 50
+        x: 25
         spacing: 30
 
         RowLayout
