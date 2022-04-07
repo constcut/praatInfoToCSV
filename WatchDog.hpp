@@ -41,6 +41,14 @@ namespace pitc {
             return _breakFieldBorder;
         }
 
+        Q_INVOKABLE QString getInfoDir() {
+            return _infoDirectory;
+        }
+
+        Q_INVOKABLE QString getCsvFile() {
+            return _csvFilename;
+        }
+
     public slots:
 
         void explore();

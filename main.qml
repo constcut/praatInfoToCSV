@@ -106,6 +106,9 @@ Window
         notifyRepeater.model = watchDog.totalFields()
         fieldsRepeater.model = watchDog.totalFields()
         notifyRepeater.hideAll()
+
+        infoDirText.text = watchDog.getInfoDir()
+        outputFileText.text = watchDog.getCsvFile()
     }
 
     ColumnLayout
