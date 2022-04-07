@@ -225,13 +225,20 @@ void WatchDog::loadAdditionalFields()
         file.open(QFile::ReadOnly | QFile::Text);
         QTextStream inStream(&file);
 
-
-        //inStream.readLine()
         QString start;
         QString end;
 
-        inStream.readLineInto(&start);
-        inStream.readLineInto(&end);
+        bool fine;
 
+        do {
+            if (inStream.readLineInto(&start) == false)
+                break;
+
+            fine = inStream.readLineInto(&end);
+
+            _starters.append(start);
+            _enders.append(end);
+
+        } while (fine);
     }
 }
