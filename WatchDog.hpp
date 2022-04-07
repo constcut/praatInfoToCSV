@@ -81,8 +81,8 @@ namespace pitc {
         QString _date = "Not set";
         QString _dayTime = "Not set";
 
-        QString _csvFilename;
-        QString _infoDirectory;
+        QString _csvFilename = "export.csv";
+        QString _infoDirectory = "praatInfo";
     };
 
 
