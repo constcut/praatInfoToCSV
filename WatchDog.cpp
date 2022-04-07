@@ -217,6 +217,7 @@ void WatchDog::loadFilesConfig()
     }
 }
 
+
 void WatchDog::loadAdditionalFields()
 {
     if (QFile::exists("fields.config"))
@@ -227,14 +228,16 @@ void WatchDog::loadAdditionalFields()
 
         QString start;
         QString end;
-
         bool fine;
 
-        do {
+        do
+        {
             if (inStream.readLineInto(&start) == false)
                 break;
 
             fine = inStream.readLineInto(&end);
+
+            qDebug() << "Loaded: " << start << " " << end;
 
             _starters.append(start);
             _enders.append(end);
