@@ -4,6 +4,7 @@
 
 #include <QFont>
 #include <QTextCodec>
+#include <QDir>
 
 #include "WatchDog.hpp"
 
@@ -27,6 +28,12 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 
     QQmlApplicationEngine engine;
+
+    QDir dir;
+    if (dir.exists("praatInfo") == false) {
+        if (dir.mkdir("praatInfo") == false)
+            qDebug() << "Failed to create records directory";
+    }
 
     pitc::WatchDog watchDog;
     engine.rootContext()->setContextProperty("watchDog", &watchDog);
