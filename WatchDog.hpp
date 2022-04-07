@@ -20,6 +20,8 @@ namespace pitc {
         WatchDog();
 
         void loadFilesConfig();
+        void loadAdditionalFields();
+
 
         void startTimer();
 

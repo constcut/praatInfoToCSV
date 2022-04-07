@@ -216,3 +216,22 @@ void WatchDog::loadFilesConfig()
         qDebug() << "Loaded config files: " << _infoDirectory << " " << _csvFilename;
     }
 }
+
+void WatchDog::loadAdditionalFields()
+{
+    if (QFile::exists("fields.config"))
+    {
+        QFile file("fields.config");
+        file.open(QFile::ReadOnly | QFile::Text);
+        QTextStream inStream(&file);
+
+
+        //inStream.readLine()
+        QString start;
+        QString end;
+
+        inStream.readLineInto(&start);
+        inStream.readLineInto(&end);
+
+    }
+}
