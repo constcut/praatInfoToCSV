@@ -213,7 +213,7 @@ void WatchDog::loadFilesConfig()
         QTextStream inStream(&file);
         inStream >> _infoDirectory >> _csvFilename;
 
-        qDebug() << "Loaded config files: " << _infoDirectory << " " << _csvFilename;
+        qDebug() << "Loaded config filenames: " << _infoDirectory << " " << _csvFilename;
     }
 }
 
@@ -237,7 +237,7 @@ void WatchDog::loadAdditionalFields()
 
             fine = inStream.readLineInto(&end);
 
-            qDebug() << "Loaded: " << start << " " << end;
+            qDebug() << "Loaded additional field: " << start << " " << end;
 
             _starters.append(start);
             _enders.append(end);
