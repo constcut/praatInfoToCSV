@@ -31,10 +31,12 @@ namespace pitc {
 
         Q_INVOKABLE void setCSVfilename(QString fn) {
             _csvFilename = fn;
+            saveFilesConfig();
         }
 
         Q_INVOKABLE void setInfoDirectory(QString dir) {
             _infoDirectory = dir;
+            saveFilesConfig();
         }
 
         Q_INVOKABLE int getBreakBorder() {
@@ -59,6 +61,8 @@ namespace pitc {
         void notifyLastFilled(QString last);
 
     private:
+
+        void saveFilesConfig();
 
         void checkFile(const QString& filename);
         void checkLine(const QString& line);

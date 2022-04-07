@@ -193,3 +193,12 @@ void WatchDog::setDayTime(QString dayTime)
 {
     _dayTime = dayTime;
 }
+
+
+void WatchDog::saveFilesConfig()
+{
+    QFile file("fname.config");
+    file.open(QFile::WriteOnly | QFile::Text);
+    QTextStream outStream(&file);
+    outStream << _infoDirectory << "\n" << _csvFilename;
+}
