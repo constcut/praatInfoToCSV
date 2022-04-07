@@ -243,5 +243,7 @@ void WatchDog::loadAdditionalFields()
             _enders.append(end);
 
         } while (fine);
+
+        resetStored();
     }
 }

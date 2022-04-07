@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
     pitc::WatchDog watchDog;
     watchDog.loadFilesConfig();
-    watchDog.loadAdditionalFields()
+    watchDog.loadAdditionalFields();
 
     engine.rootContext()->setContextProperty("watchDog", &watchDog);
 
