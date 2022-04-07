@@ -19,6 +19,8 @@ namespace pitc {
 
         WatchDog();
 
+        void loadFilesConfig();
+
         void startTimer();
 
         Q_INVOKABLE void setName(QString name);

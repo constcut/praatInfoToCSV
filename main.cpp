@@ -36,6 +36,8 @@ int main(int argc, char *argv[])
     }
 
     pitc::WatchDog watchDog;
+    watchDog.loadFilesConfig();
+
     engine.rootContext()->setContextProperty("watchDog", &watchDog);
 
     watchDog.startTimer();

@@ -202,3 +202,17 @@ void WatchDog::saveFilesConfig()
     QTextStream outStream(&file);
     outStream << _infoDirectory << "\n" << _csvFilename;
 }
+
+
+void WatchDog::loadFilesConfig()
+{
+    if (QFile::exists("fname.config"))
+    {
+        QFile file("fname.config");
+        file.open(QFile::ReadOnly | QFile::Text);
+        QTextStream inStream(&file);
+        inStream >> _infoDirectory >> _csvFilename;
+
+        qDebug() << "Loaded config files: " << _infoDirectory << " " << _csvFilename;
+    }
+}
